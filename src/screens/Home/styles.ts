@@ -6,4 +6,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#131016',
     alignItems: 'center',
   },
+  containerInput: {
+    flexDirection: 'row',
+    width: '100%',
+    padding: 20,
+  }
 });
