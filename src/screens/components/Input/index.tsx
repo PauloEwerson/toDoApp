@@ -5,7 +5,7 @@ export default function Input() {
   return (
      <TextInput
       style={styles.inputText}
-      placeholder="Digite seu nome"
+      placeholder="Adicione uma nova tarefa"
       placeholderTextColor="#6b6b6b"
      />
   );
