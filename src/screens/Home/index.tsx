@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from './styles';
+import { PlusCircleOutlined, FormOutlined, LineOutlined } from '@ant-design/icons';
 
 interface Task {
   key: string;
@@ -17,6 +18,7 @@ const TodoList: React.FC = () => {
   const handleAddTask = (text: string): void => {
     setTasks([...tasks, { key: Date.now().toString(), text: text, completed: false }]);
     setCountCreated(countCreated + 1);
+    setText('');
   };
 
   const handleCompleteTask = (key: string): void => {
@@ -40,29 +42,64 @@ const TodoList: React.FC = () => {
           placeholderTextColor={'#999'}
           onChangeText={(text) => setText(text)
           }
+          value={text}
         />
         <TouchableOpacity
           style={styles.button}
           onPress={() => handleAddTask(text)}
         >
           <Text style={styles.buttonText}>
-            +
+            <PlusCircleOutlined />
           </Text>
         </TouchableOpacity>
       </View>
-      <Text>Tarefas criadas: {countCreated}</Text>
-      <Text>Tarefas concluídas: {countCompleted}</Text>
-      <FlatList
-        data={tasks}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => handleCompleteTask(item.key)}>
-            <Text style={{ textDecorationLine: item.completed ? 'line-through' : 'none' }}>
-              {item.text}
+
+      <View style={styles.tasksInfo}>
+        <Text style={styles.text}>
+          Tarefas criadas: {countCreated}
+        </Text>
+        <Text style={styles.text}>
+          Tarefas concluídas: {countCompleted}
+        </Text>
+      </View>
+
+      {tasks.length === 0 ? (
+        <View style={styles.list}>
+          <View style={styles.line}>
+            <LineOutlined style={styles.line} />
+            <FormOutlined style={{
+              fontSize: 34,
+              color: 'white',
+              marginBottom: 10
+            }} />
+            <Text style={styles.text}>
+              Você ainda não tem tarefas cadastradas
             </Text>
-          </TouchableOpacity>
-        )}
-      />
+            <Text style={styles.text}>
+              Crie tarefas e organize seus itens a fazer
+            </Text>
+          </View>
+        </View>
+      ) : (
+        <FlatList
+          style={styles.list}
+          data={tasks}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              style={styles.listContainer}
+              onPress={() => handleCompleteTask(item.key)}>
+              <Text style={{
+                textDecorationLine: item.completed ? 'line-through' : 'none',
+                color: '#fff',
+                fontSize: 16
+              }}>
+                {item.text}
+              </Text>
+            </TouchableOpacity>
+          )}
+        />
+      )}
+
     </View>
   );
 };
