@@ -6,11 +6,11 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import {
-  PlusCircleOutlined,
-  FormOutlined,
-  LineOutlined,
-} from '@ant-design/icons';
+// import {
+// PlusCircleOutlined,
+// FormOutlined,
+// LineOutlined,
+// } from '@ant-design/icons';
 import { styles } from './styles';
 
 interface Task {
@@ -38,6 +38,13 @@ const TodoList: React.FC = () => {
     }
   };
 
+  const handleDeleteTask = (id: string) => {
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+    setCreatedCount(createdCount - 1);
+    setCompletedCount(completedCount - 1);
+  }
+
   const handleCompleteTask = (id: string) => {
     const updatedTasks = tasks.map((task) =>
       task.id === id
@@ -53,14 +60,14 @@ const TodoList: React.FC = () => {
   const renderEmptyList = () => (
     <View style={styles.list}>
       <View style={styles.line}>
-        <LineOutlined style={styles.line} />
-        <FormOutlined
+        {/* <LineOutlined style={styles.line} /> */}
+        {/* <FormOutlined
           style={{
             fontSize: 34,
             color: 'white',
             marginBottom: 10,
           }}
-        />
+        /> */}
         <Text style={styles.text}>
           Você ainda não tem tarefas cadastradas
         </Text>
@@ -72,19 +79,30 @@ const TodoList: React.FC = () => {
   );
 
   const renderTask = ({ item }: { item: Task }) => (
-    <TouchableOpacity
-      style={styles.listContainer}
-      onPress={() => handleCompleteTask(item.id)}
-    >
-      <Text
-        style={[
-          styles.taskText,
-          item.completed && styles.completedTaskText,
-        ]}
+    <View style={styles.onTaskContainer}>
+      <TouchableOpacity
+        style={styles.listContainer}
+        onPress={() => handleCompleteTask(item.id)}
       >
-        {item.text}
-      </Text>
-    </TouchableOpacity>
+        <Text
+          style={[
+            styles.taskText,
+            item.completed && styles.completedTaskText,
+          ]}
+        >
+          {item.text}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => handleDeleteTask(item.id)}
+      >
+        <Text style={styles.buttonText}>
+          {/* <PlusCircleOutlined /> */}
+          X
+        </Text>
+      </TouchableOpacity>
+    </View>
   );
 
   return (
@@ -105,17 +123,18 @@ const TodoList: React.FC = () => {
           onPress={handleAddTask}
         >
           <Text style={styles.buttonText}>
-            <PlusCircleOutlined />
+            {/* <PlusCircleOutlined /> */}
+            +
           </Text>
         </TouchableOpacity>
       </View>
 
       <View style={styles.tasksInfo}>
         <Text style={styles.text}>
-          Tarefas criadas: {createdCount}
+          Criadas: {createdCount}
         </Text>
         <Text style={styles.text}>
-          Tarefas concluídas: {completedCount}
+          Concluídas: {completedCount}
         </Text>
       </View>
 
@@ -128,6 +147,7 @@ const TodoList: React.FC = () => {
           renderItem={renderTask}
           keyExtractor={(item) => item.id}
         />
+
       )}
     </View>
   );

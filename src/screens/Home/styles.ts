@@ -6,9 +6,10 @@ export const styles = StyleSheet.create({
     color: '#fff',
   },
   line: {
-    borderTopWidth: 1,
-    borderTopColor: 'white',
+    borderTopWidth: 2,
+    borderTopColor: '#1F1E25',
     marginTop: 10,
+    padding: 16
   },
   container: {
     flex: 1,
@@ -40,10 +41,24 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  onTaskContainer: {
+    flexDirection: 'row',
+    marginBottom: 12,
+  },
+  deleteButton: {
+    height: 56,
+    width: 56,
+    borderRadius: 5,
+    backgroundColor: '#E83F5B',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   buttonText : {
     color: '#fff',
     fontSize: 24,
     fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   updateButton: {
     height: 56,
@@ -89,17 +104,21 @@ export const styles = StyleSheet.create({
   list: {
     flex: 1,
     width: '100%',
-    borderTopWidth: 1,
-    borderTopColor: 'white',
+    // borderTopWidth: 1,
+    // borderTopColor: 'white',
     paddingHorizontal: 20,
   },
   listContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
+    padding: 12,
     backgroundColor: '#1F1E25',
     borderBottomWidth: 1,
     borderBottomColor: '#4EA8DE',
+    borderRadius: 5,
+    fontSize: 16,
+    marginRight: 12,
   },
   taskText: {
     color: '#fff',
