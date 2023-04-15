@@ -45,6 +45,18 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  updateButton: {
+    height: 56,
+    backgroundColor: '#1F1E25',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 5,
+    marginBottom: 12,
+  },
+  updateButtonText: {
+    color: '#4EA8DE',
+    fontSize: 16,
+  },
 
   tasksInfo: {
     flexDirection: 'row',
@@ -55,9 +67,30 @@ export const styles = StyleSheet.create({
     marginBottom: 16,
   },
 
+  noTasksContainer: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noTasksText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 12,
+  },
+  noTasksDescription: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+
   list: {
     flex: 1,
     width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: 'white',
     paddingHorizontal: 20,
   },
   listContainer: {
@@ -65,6 +98,15 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 16,
     backgroundColor: '#1F1E25',
-    marginBottom: 12,
-  }
+    borderBottomWidth: 1,
+    borderBottomColor: '#4EA8DE',
+  },
+  taskText: {
+    color: '#fff',
+    fontSize: 16,
+  },
+  completedTaskText: {
+    color: '#4EA8DE',
+    textDecorationLine: 'line-through',
+  },
 });
