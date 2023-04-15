@@ -42,7 +42,10 @@ const TodoList: React.FC = () => {
     const updatedTasks = tasks.filter((task) => task.id !== id);
     setTasks(updatedTasks);
     setCreatedCount(createdCount - 1);
-    setCompletedCount(completedCount - 1);
+    const checkIfCompleted = tasks.find((task) => task.id === id);
+    if (checkIfCompleted?.completed) {
+      setCompletedCount(completedCount - 1);
+    }
   }
 
   const handleCompleteTask = (id: string) => {
